@@ -38,7 +38,7 @@ const QuoteOutput=async()=>{
             path,
             amountOut,
         );
-        const amountIn=ethers.formatUnits(quoteInput.amountIn,6);
+        const amountIn=ethers.formatUnits(quoteInput.amountIn,18);
         console.log(`Put ${amountIn} WETH => Get ${AmountOut} USDC`);
     }catch(error){
         console.log("quote fetch error:",error);
