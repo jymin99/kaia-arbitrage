@@ -8,8 +8,9 @@ async function getPrice(){
     try{
         const response=await axios.get('https://api.swapscanner.io/v1/tokens/prices');
         priceData=response.data
+        console.log("price:",priceData);
         for (const [key, value] of Object.entries(priceData)) {
-            console.log(`${key}`);
+            console.log(`'${key}',`);
     }
     }catch(error){
         console.log("error:",error);
