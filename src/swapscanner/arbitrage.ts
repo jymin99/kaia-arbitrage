@@ -1,6 +1,6 @@
 import {quote} from './calculate';
-import {getAddress} from './getaddress';
 import { ethers } from 'ethers';
+import tokens from "../../utils/token_address";
 // import {abi as ERC20ABI} from '@openzeppelin/contracts/build/contracts/ERC20.json';
 
 // const provider=new ethers.JsonRpcProvider("https://public-en.node.kaia.io");
@@ -51,14 +51,12 @@ const executeQuteReturn=async(tokenInAddress:string, tokenOutAddress:string,amou
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
 const findOpportunity=async()=>{
-    const tokenKeys=await getAddress();
+    const tokenKeys=tokens;
     if(tokenKeys){
-        const tokenAddresses=Object.keys(tokenKeys);
-
-        for (let i=1;i<tokenAddresses.length-1;i++){
-            for(let j=2;j<tokenAddresses.length;j++){
-                const tokenInAddress=tokenAddresses[i];
-                const tokenOutAddress=tokenAddresses[j];
+        for (let i=1;i<tokenKeys.length-1;i++){
+            for(let j=2;j<tokenKeys.length;j++){
+                const tokenInAddress=tokenKeys[i];
+                const tokenOutAddress=tokenKeys[j];
                 const amountMid=await executeQuote(tokenInAddress,tokenOutAddress,amountIn);
 
                 // const tokenDecimalValue=await tokenDecimal(tokenInAddress,tokenOutAddress);
